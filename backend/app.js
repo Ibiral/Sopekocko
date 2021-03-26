@@ -11,7 +11,7 @@ const userRoutes = require('./routes/user');
 const app = express();
 
 // Connexion à MongoDB
-mongoose.connect('mongodb+srv://Laurel:Openclassrooms@cluster0.y8hyf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${process.env.DBUSER}:${process.env.DBPASSWORD}@cluster0.y8hyf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -29,6 +29,12 @@ app.use((req, res, next) => {
 
 // Gestion de JSON
 app.use(express.json());
+
+// Gestion des erreurs CORS
+// app.use((req, res, next) => {
+//   console.log("req.body",req.body)
+//   next();
+// });
 
 // Chemin de sauvegarde des photos dans le backend
 app.use('/images', express.static(path.join(__dirname, 'images')));

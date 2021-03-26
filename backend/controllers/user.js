@@ -1,7 +1,21 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 const User = require('../models/User');
+const passwordValidator = require('password-validator');
+const schema = new passwordValidator();
+
+// Propriétés requises
+schema
+.is().min(8)                                    // Minimum 8 lettres
+.is().max(100)                                  // Maximum 100 lettres
+.has().uppercase()                              // Doit avoir une lettre majuscule
+.has().lowercase()                              // Doit avoir une lettre minuscule
+.has().digits(1)                                // Doit avoir minimum un chiffre
+.has().not().spaces()                           // Ne doit pas avoir d'espaces
+.is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist de ces mots de passe
+
+// Valider à nouveau le mot de passe
+console.log(schema.validate('validPASS123'));
 
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)

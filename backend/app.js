@@ -30,12 +30,6 @@ app.use((req, res, next) => {
 // Gestion de JSON
 app.use(express.json());
 
-// Gestion des erreurs CORS
-// app.use((req, res, next) => {
-//   console.log("req.body",req.body)
-//   next();
-// });
-
 // Chemin de sauvegarde des photos dans le backend
 app.use('/images', express.static(path.join(__dirname, 'images')));
 

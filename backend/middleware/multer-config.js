@@ -5,8 +5,10 @@ const MIME_TYPES = {
   'image/jpeg': 'jpg',
   'image/png': 'png'
 };
+let storage;
 
-const storage = multer
+try {
+  storage = multer
   .diskStorage({
     destination: (req, file, callback) => {
       callback(null, 'images');
@@ -17,11 +19,11 @@ const storage = multer
       callback(null, name + Date.now() + '.' + extension);
     }
   })
-  // .size(300000);  
+  .size(300000); 
+  
+} catch (error) {
+ console.log("--------",error) 
+}
 
 module.exports = multer({storage: storage}).single('image');
 
-
-
-
-// const imgResizer = sharp().resize(200, 200);

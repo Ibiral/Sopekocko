@@ -1,6 +1,7 @@
 // Importation des modules
 const express = require('express');
 const mongoose = require('mongoose');
+const helmet = require("helmet");
 const path = require('path');
 
 // Importation des routes
@@ -26,6 +27,8 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
+
+app.use(helmet());
 
 // Gestion de JSON
 app.use(express.json());

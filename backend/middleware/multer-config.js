@@ -19,11 +19,10 @@ try {
       callback(null, name + Date.now() + '.' + extension);
     }
   })
-  .size(300000); 
   
 } catch (error) {
  console.log("--------",error) 
 }
 
-module.exports = multer({storage: storage}).single('image');
+module.exports = multer({storage: storage, limits:{fileSize:5000000}}).single('image');
 

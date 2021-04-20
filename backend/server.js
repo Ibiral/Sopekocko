@@ -1,3 +1,4 @@
+//Mise en place d'un server node
 require('dotenv').config();
 const http = require('http');
 const app = require('./app');
@@ -13,7 +14,7 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 const errorHandler = error => {
@@ -36,6 +37,7 @@ const errorHandler = error => {
   }
 };
 
+//Création du server Node
 const server = http.createServer(app);
 
 server.on('error', errorHandler);

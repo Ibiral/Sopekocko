@@ -76,8 +76,8 @@ exports.getAllSauces = (req, res, next) => {
 
 //Like/ Dislike des sauces
 exports.likeSauce = (req, res, next) => {
-  if (req.body.like === 1)  return likedSauce(req.params.id, req.body.userId, res);
-  if (req.body.like === 0)  return cancelLikeSauce(req.params.id, req.body.userId, res);
+  if (req.body.like === 1) return likedSauce(req.params.id, req.body.userId, res);
+  if (req.body.like === 0) return cancelLikeSauce(req.params.id, req.body.userId, res);
   if (req.body.like === -1) return dislikedSauce(req.params.id, req.body.userId, res);
 };
 

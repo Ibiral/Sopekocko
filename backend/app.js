@@ -28,6 +28,7 @@ app.use((req, res, next) => {
   next();
 });
 
+//Middleware de sécurité
 app.use(helmet());
 
 // Gestion de JSON
